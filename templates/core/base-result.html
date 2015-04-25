@@ -1,0 +1,43 @@
+{% extends "components/base.html" %}
+
+{% block content %}
+    <section class="block">
+        <div class="row">
+            <div class="large-12 medium-12 small-12 columns">
+                <div class="titulo-section">
+                    <h2 class="titulo-block">Coin Determiner</h2>
+                    <hr>
+                </div>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div data-alert class="alert-box radius {% if message.tags == 'error' %}alert{% else %}{{ message.tags }}{% endif %} alertas">{{ message }}
+                            <a href="#" class="close">&times;</a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="row">
+                    <div class="large-4 medium-6 small-12 columns">
+                        <form action="{% url "result" %}" class="well not-printable" method="GET">
+                            <div class="row collapse">
+                                <label>Input Coin</label>
+                                <div class="small-11 columns">
+                                    <input name="coin" type="number" min="0">
+                                </div>
+                                <div class="small-1 columns">
+                                    <button type="submit" class="button postfix"><i class="fi-magnifying-glass"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="large-12 medium-12 small-12 columns">
+                        <span class="label">Output: {{ change_count }}</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
